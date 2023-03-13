@@ -1,0 +1,91 @@
+// =================== Variables ===================
+// ******* Colors *******//
+$white: #fff;
+$white2: #E4EEF2;
+$blue: #006584;
+$blue2:#00658429;
+$blue-lt: #E5EFF2;
+$blue-lt2: #A2ECFF;
+$gray: #656565;
+$gray2: #F0F0F0;
+$gray3: #e7e7e7;
+$gray4: #c5c5c5;
+$blue-dark: #042833;
+$gray-middle: #A9A9AC;
+$gray-lt: #EFEFEF;
+$gray-light: #d7e1e4; 
+$green: #00806F;
+$green-blue: #2BB673;
+$green-light: #9FC335;
+$blue-light: #27B2E1;
+$black: #000;
+$black2: #3a3a3a;
+
+// ******* Colors  Css *******//
+:root {
+    --white: #{$white};
+    --white-2: #{$white2};
+    --blue: #{$blue};
+    --blue-2: #{$blue2};
+    --blue-lt: #{$blue-lt};
+    --blue-lt2: #{$blue-lt2};
+    --gray: #{$gray};
+    --gray-2: #{$gray2};
+    --gray-3: #{$gray3};
+    --gray-4: #{$gray4};
+    --blue-dark: #{$blue-dark};
+    --gray-middle: #{$gray-middle};
+    --gray-lt: #{$gray-lt};
+    --gray-light: #{$gray-light};
+    --green: #{$green};
+    --green-blue: #{$green-blue};
+    --green-light: #{$green-light};
+    --blue-light: #{$blue-light};
+    --black: #{$black};
+    --black-2: #{$black2};
+}
+
+    //colores css
+
+
+//******* Fonts *******//
+$lato: 'Lato',
+sans-serif;
+$inter: 'Inter',
+sans-serif;
+//*****Paths*****//
+$icon-path  : '../assets/icons/';
+$bg-path    : '../assets/images/';
+// =================== Mixins ===================
+@mixin seudoElm ($cont: "", $pos:absolute) {
+    content: $cont;
+    position: $pos;
+}
+
+//Media Querys
+$breakpoint-xs: 360px;
+$breakpoint-sm: 767px;
+$breakpoint-md: 1023px;
+$breakpoint-lg: 1360px;
+@mixin media($media) {
+    @if $media==xs {
+        @media (max-width: $breakpoint-sm) {
+            @content;
+        }
+    }
+    @else if $media==sm {
+        @media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
+            @content;
+        }
+    }
+    @else if $media==md {
+        @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+            @content;
+        }
+    }
+    @else if $media==lg {
+        @media (min-width: $breakpoint-lg) {
+            @content;
+        }
+    }
+}

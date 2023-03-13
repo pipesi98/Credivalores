@@ -1,0 +1,99 @@
+{% block head %}
+	<header>
+		<div class="navbar navbar-expand-md navbar-light  nav-top" role="navigation">
+			<div class="products-btn">
+				{{page.m_solicitar}}
+			</div>
+			<div class="top-bar">
+				<div class="container">
+					<div class="content-menu">
+						{{page.mm_global}}
+						{{page.m_solicitar}}
+					</div>
+					<div class="highContrast">
+						<div class="clear-theme"></div>
+						<div class="dark-theme"></div>
+					</div>
+					<div class="content-resize">
+						<p class="menos-resizer">-<span>A</span>
+						</p>
+						<input id="changeFontSize" class="font-resizer" type="range" step="1" value="0" min="14" max="16">
+						<p class="mas-resizer">+<span>A</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="navbar navbar-expand-md  main-menu" role="navigation">
+			<div class="container">
+				<div class="row menu-mob">
+					<div class="col-6 col-md-3 col-lg-3 logo-header">
+						<div class="logo">
+							{{ page.header }}
+						</div>
+					</div>
+					<div class="col-6 col-md-9 col-lg-9 cont-col-main-menu">
+						<div class="menu-main-li">
+							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+									<defs>
+										<style>
+											.a,
+											.b {
+												fill: var(--black);
+											}
+											.a {
+												opacity: 0;
+											}
+										</style>
+									</defs><rect class="a" width="24" height="24" transform="translate(24 24) rotate(180)"/><rect class="b" width="18" height="2" rx="0.95" transform="translate(3 11)"/><rect class="b" width="18" height="2" rx="0.95" transform="translate(3 16)"/><rect class="b" width="18" height="2" rx="0.95" transform="translate(3 6)"/></svg>
+							</button>
+							<div class="colla-menu-main" id="navbarCollapse">
+								<div
+									class="d-none d-md-block">
+									<!-- Mega menu principal-->
+									{{page.mm_principal}}
+									<!-- mega menu principal-->
+								</div>
+								<div class="d-md-none menu-mobile-main">
+									<!-- RESPONSIVE-->
+									<!-- MENÚ PRINCIPAL-->
+									{{ drupal_menu('main') }}
+									<!-- MENÚ PRINCIPAL-->
+									<!-- MENÚ GLOBAL-->
+								     {{ drupal_menu('account') }}
+									<!-- MENÚ GLOBAL-->
+									<!-- RESPONSIVE-->
+								</div>
+							</div>
+						</div>
+					</div>
+								<div class="collapse " id="navbarCollapse">
+								
+								<div class="d-xl-none menu-mobile-main content-menu-responsive">
+									<!-- RESPONSIVE-->
+									<!-- MENÚ PRINCIPAL-->
+									{{ drupal_menu('main') }}
+									<!-- MENÚ PRINCIPAL-->
+									<!-- MENÚ GLOBAL-->
+								     {{ drupal_menu('account') }}
+									<!-- MENÚ GLOBAL-->
+									<!-- RESPONSIVE-->
+								</div>
+							</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="container">
+	<div class="d-md-none"></div>
+	<div class="d-none d-md-block"><!-- FUENTE-->
+
+		<!-- FUENTE-->
+
+	</div>
+</div>
+</div>
+{% endblock %}

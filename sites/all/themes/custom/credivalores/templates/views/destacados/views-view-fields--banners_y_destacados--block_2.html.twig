@@ -1,0 +1,8 @@
+{% if fields.field_enlace.content|raw|striptags|trim %}
+    <a href="{{ fields.field_enlace.content|raw|striptags|trim}}" target="_blank">
+{% else %}
+    <a class="canalesid" data-id="{{ fields.nid.content|raw|striptags|trim}}">
+{% endif %}
+    {{ fields.field_icono.content}}
+    <p>{{ fields.title.content|raw|striptags|trim}}</p>
+    </a>

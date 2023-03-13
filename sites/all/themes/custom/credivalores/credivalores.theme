@@ -1,0 +1,37 @@
+<?php
+
+use Drupal\Core\Url;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\paragraphs\Entity\Paragraph;
+
+function credivalores_preprocess_page(&$variables) {
+    $status = \Drupal::requestStack()->getCurrentRequest()->attributes->get('exception');
+    if ($status && $status->getStatusCode() == 404){
+          header('Location: /404');
+        exit;
+    }
+
+    $ruta_vista = \Drupal::routeMatch()->getRouteName();
+    
+    if( $ruta_vista == 'view.puntos_de_atencion.page_1'){
+        //agrego librería js de mapa
+        $variables['#attached']['library'][] = 'credivalores/global-puntos-atencion';
+    }
+}
+
+/**
+ * Use language code for the language switcher
+ */
+function credivalores_preprocess_links__language_block(&$variables) {
+    foreach ($variables['links'] as $i => $link) {
+      $linkLanguage = $link['link']['#options']['language'];
+        if($linkLanguage->get('id') =='es'){
+            $variables['links'][$i]['link']['#title'] = "Versión en español";
+        }elseif($linkLanguage->get('id') =='en'){
+            $variables['links'][$i]['link']['#title'] = "English version";
+        }else{
+            $variables['links'][$i]['link']['#title'] = $linkLanguage->get('id');
+        }
+    }
+  }

@@ -1,0 +1,511 @@
+$image-path: "../assets/images/";
+$icons-path: "../assets/icons/";
+
+
+// ******* Colors  Css *******//
+
+:root {
+  --white: #{$white};
+  --white-2: #{$white2};
+  --blue: #{$blue};
+  --blue-2: #{$blue2};
+  --blue-lt: #{$blue-lt};
+  --blue-lt2: #{$blue-lt2};
+  --gray: #{$gray};
+  --gray-2: #{$gray2};
+  --gray-3: #{$gray3};
+  --gray-4: #{$gray4};
+  --blue-dark: #{$blue-dark};
+  --gray-middle: #{$gray-middle};
+  --gray-lt: #{$gray-lt};
+  --gray-light: #{$gray-light};
+  --green: #{$green};
+  --green-blue: #{$green-blue};
+  --green-light: #{$green-light};
+  --blue-light: #{$blue-light};
+  --black: #{$black};
+  --black-2: #{$black2};
+}
+
+
+//base font size
+$baseFontSize: 16;
+// Función que convierte pixeles en rem
+@function rem($pixels, $context: $baseFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+  @return $pixels / $context * 1rem;
+}
+
+body {
+  font-family: $lato;
+}
+
+p {
+  color: var(--gray);
+}
+
+ul {
+  padding-left: 15px;
+  li {
+    list-style: none;
+    color: $gray;
+    a {
+      color: inherit;
+      vertical-align: middle;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    &::before {
+      content: "\2022";
+      color: $green-light;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  color: var(--blue);
+  letter-spacing: 1px;
+}
+
+h1,
+h2 {
+  font-weight: 900;
+}
+
+h2 {
+  font-size: 35px;
+}
+
+h3 {
+  font-size: 25px;
+}
+
+// font sizes
+$font-13: rem(13);
+$font-14: rem(14);
+$font-16: rem(16);
+$font-17: rem(17);
+$font-18: rem(18);
+$font-20: rem(20);
+$font-21: rem(21);
+$font-22: rem(21);
+$font-24: rem(24);
+$font-25: rem(25);
+$font-30: rem(30);
+$font-32: rem(32);
+$font-35: rem(35);
+$font-36: rem(36);
+$font-39: rem(39);
+$font-40: rem(40);
+$font-42: rem(42);
+$font-48: rem(48);
+$font-50: rem(50);
+$font-55: rem(55);
+$font-64: rem(64);
+$font-90: rem(90);
+$font-100: rem(100);
+$font-130: rem(130);
+.font {
+  &-13 {
+    font-size: $font-13;
+  }
+  &-14 {
+    font-size: $font-14;
+  }
+  &-16 {
+    font-size: $font-16;
+  }
+  &-17 {
+    font-size: $font-17;
+  }
+  &-18 {
+    font-size: $font-18;
+  }
+  &-20 {
+    font-size: $font-20;
+  }
+  &-21 {
+    font-size: $font-21;
+  }
+  &-22 {
+    font-size: $font-22;
+  }
+  &-24 {
+    font-size: $font-24;
+  }
+  &-25 {
+    font-size: $font-25;
+  }
+  &-30 {
+    font-size: $font-30;
+  }
+  &-32 {
+    font-size: $font-32;
+  }
+  &-36 {
+    font-size: $font-36;
+  }
+  &-39 {
+    font-size: $font-39;
+  }
+  &-40 {
+    font-size: $font-40;
+  }
+  &-42 {
+    font-size: $font-42;
+  }
+  &-48 {
+    font-size: $font-48;
+  }
+  &-50 {
+    font-size: $font-50;
+  }
+  &-55 {
+    font-size: $font-55;
+  }
+  &-64 {
+    font-size: $font-64;
+  }
+  &-90 {
+    font-size: $font-90;
+  }
+  &-100 {
+    font-size: $font-100;
+  }
+  &-130 {
+    font-size: $font-130;
+  }
+}
+
+//font-weight-custom
+.font-weight {
+  &-100 {
+    font-weight: 100;
+  }
+  &-200 {
+    font-weight: 200;
+  }
+  &-900 {
+    font-weight: 900;
+  }
+}
+//backgrounds
+.bg {
+  &-blue-lt {
+    background-color: $blue-lt;
+  }
+  &-gray-lt {
+    background-color: $gray-lt;
+  }
+  &-gradient {
+    &-blue-green {
+      background: linear-gradient(99deg, $blue, $green-blue 70%);
+    }
+  }
+}
+
+// colors
+.color {
+  &-blue {
+    color: $blue;
+  }
+  &-white {
+    color: $white;
+  }
+  &-gray-middle {
+    color: $gray-middle;
+  }
+}
+
+// Content middle
+.content-middle {
+  &--80 {
+    width: 80%;
+  }
+
+  &--65 {
+    width: 65%;
+  }
+}
+
+//widths
+.w {
+  &-fit-content {
+    width: fit-content;
+  }
+}
+
+//paddings custom
+.p {
+  &-25 {
+    padding: 25px;
+  }
+}
+//margins custom
+.mb {
+  &-18 {
+    margin-bottom: 18px;
+  }
+}
+
+.breadcrumb {
+  background-color: unset;
+  font-size: 13px;
+  margin-bottom: 0;
+  li {
+    a:nth-child(1) {
+      font-weight: bold;
+      color: $blue;
+    }
+    &:not(:first-child) {
+      &::before {
+        content: "/";
+        margin-left: 2px;
+        margin-right: 2px;
+      }
+    }
+    &:not(:last-child) {
+      a {
+        color: unset;
+        font-weight: unset;
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+}
+
+.ctaCustom {
+  a {
+    color: white;
+    padding: 9px 35px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    background-color: $blue;
+  }
+  &--blue {
+    a {
+      background-color: $blue;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: $blue-light;
+      }
+    }
+  }
+
+  &--white {
+    a {
+      background-color: $white;
+      color: $green;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: $green;
+        color: $white;
+      }
+    }
+  }
+  &--green {
+    a {
+      background-color: $green;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: $green-blue;
+      }
+    }
+  }
+  &--transparent {
+    border: solid 1px $white;
+    margin: 5px auto !important;
+    a {
+      background-color: transparent;
+      color: $white;
+      padding: 9px 10px;
+      transition: all 0.3s ease;
+    }
+  }
+  &--border-blue {
+    a {
+      background-color: transparent;
+      color: $blue;
+      border: 1px solid $blue;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: $blue;
+        color: $white;
+      }
+    }
+  }
+
+  button {
+    color: var(--white);
+    padding: 9px 35px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    background-color: $blue;
+    transition: background-color 0.3s ease;
+    border: none;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0px 1px 4px #00658429;
+  &-hover {
+    box-shadow: 0px 1px 4px #00658429;
+    transition: all 0.5s ease;
+    &:hover {
+      box-shadow: 0px 10px 30px #00658429;
+    }
+  }
+  &-30 {
+    box-shadow: 0px 10px 30px #00658429;
+  }
+}
+
+.list-style-none,
+#toolbar-item-administration-tray,
+.region-pestana {
+  li {
+    &::before {
+      content: "";
+      display: none;
+    }
+  }
+}
+
+.ancle-not-color {
+  color: unset;
+  &:hover {
+    color: $blue;
+  }
+}
+
+//Padding
+.pdd {
+  &-top {
+    &-10 {
+      padding-top: 10px;
+    }
+    &-15 {
+      padding-top: 15px;
+    }
+    &-20 {
+      padding-top: 20px;
+    }
+    &-25 {
+      padding-top: 25px;
+    }
+    &-30 {
+      padding-top: 30px;
+    }
+  }
+  &-buttom {
+    &-10 {
+      padding-bottom: 10px;
+    }
+    &-15 {
+      padding-bottom: 15px;
+    }
+    &-20 {
+      padding-bottom: 20px;
+    }
+    &-25 {
+      padding-bottom: 25px;
+    }
+    &-30 {
+      padding-bottom: 30px;
+    }
+  }
+}
+
+.enlaceInfo {
+  color: $blue;
+}
+
+//dark mode
+.dark-mode{
+
+  background-color: $black;
+  --blue: #{$black};
+  --blue-2: #{$white};
+  --gray-lt: #{$black};
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    li,
+    h2.title { 
+      --blue: #{$white};
+      --gray: #{$white};
+      --gray-lt: #{$black};
+    } 
+
+      .nav-top{
+        --gray-lt: #{$black};
+        @media (max-width: 1199px) {
+
+          --gray-lt: #{$gray};
+        }
+      }
+      
+    .top-bar{
+      --black-2: #{$white};
+      --blue: #{$white};
+
+      .content-menu{
+
+        --blue: #{$white};
+        --gray: #{$white};
+        --gray-light: #{$black};
+
+          a,span {
+            --blue: #{$white};
+
+              &::before {
+                --blue: #{$white};
+              }
+          }
+       }
+      }
+
+      .main-menu{
+
+        border-top: 1px solid var(--white);
+        border-bottom: 1px solid var(--white);
+
+        --blue-lt2: #{$white};
+        --black: #{$white};
+        --gray: #{$white};
+
+      }
+      .ultimenu__region{
+
+        background-color: black;
+        border: 1px solid var(--white);
+
+      }
+}
+
+ 

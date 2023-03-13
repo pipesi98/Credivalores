@@ -1,0 +1,27 @@
+name: Credivalores
+type: theme
+description: 'Tema basado en Bootstrap 4'
+core: 8.x
+core_version_requirement: ^8 || ^9
+base theme: bootstrap_barrio
+
+libraries:
+  - credivalores/bootstrap_cdn
+  - credivalores/global-styling
+  - credivalores/fonts
+
+regions:
+  header: Logo
+  mm_global: Mega menú global
+  m_solicitar: Mega menú solicitar productos
+  mm_principal: Mega menú principal
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  highlighted: Highlighted
+  content: Content
+  pestana: Pestañas administrativas
+  footer: 'Pie de página'
+  canales_atencion_home: 'Canales de atención home'
+  canales_atencion_interna: 'Canales de atención interna'
+  red_oficinas: 'red de oficinas'
+  estados_financieros: 'estados financieros'

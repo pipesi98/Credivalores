@@ -1,0 +1,45 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+
+  <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+    <div class="banner position-relative">
+    <div class="d-none d-md-block">
+      <img class="img-banner" src={{ file_url(content.field_image|field_target_entity.uri.value) }} alt="{{ content.field_image|field_raw('alt') }}" title="{{ content.field_image|field_raw('title') }}" />
+    </div>
+    <div class="d-md-none">
+      <img class="width-100" src={{ file_url(content.field_imagen_mobile|field_target_entity.uri.value) }} alt="{{ content.field_imagen_mobile|field_raw('alt') }}" title="{{ content.field_imagen_mobile|field_raw('title') }}" />
+    </div>   
+      <div class="div-banner position-absolute">
+        <div class="content-banner container h-100 d-flex flex-column justify-content-center">
+        <div class="content-banner-size">
+          <h1 class="font-weight-bold">{{label|field_value}}</h1>
+          <div class="subcontent">
+            {{content.body|field_value}}
+          </div>
+          <div class="ctaCustom ctaCustom--blue">
+            {{content.field_enlace|field_value}}
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-12">
+        {{content.webform}}
+       
+      </div>
+      </div>
+    </div>
+  </div>
+</article>

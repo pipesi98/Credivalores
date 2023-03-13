@@ -1,0 +1,25 @@
+<div class="banner position-relative">
+  <div class="d-none d-sm-block banner">
+    {{ fields.field_image.content}}
+  </div>
+  <div class="d-md-none">
+   {{ fields.field_imagen_mobile.content}}
+  </div>
+
+      <div class="div-banner position-absolute">
+        <div class="content-banner container h-100 d-flex flex-column justify-content-center">
+        <div class="content-banner-size">
+          <div class="d-flex">
+            <p class="parrafo-title">{{ fields.title.content|raw|striptags|trim}}</p>
+
+          </div>
+          <div class="subcontent">
+            {{ fields.body.content}}
+          </div>
+          <div class="ctaCustom ctaCustom--blue">
+            {{ fields.field_enlace.content }}
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>

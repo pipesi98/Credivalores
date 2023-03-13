@@ -1,0 +1,7 @@
+name: 'reCAPTCHA Test'
+type: module
+description: 'Test module for the recaptcha module.'
+package: Testing
+core: 8.x
+dependencies:
+  - recaptcha

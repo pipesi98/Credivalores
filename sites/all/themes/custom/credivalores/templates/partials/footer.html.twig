@@ -1,0 +1,95 @@
+{% block footer %}
+<div class="clsChatBot mt-5">
+  <div class="container ct-chat">
+    <div id="bot-draggable-webchat"></div>
+  </div>
+
+</div>
+
+
+
+<footer>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-3 logo-menu">
+        <img src="{{base_path ~ directory}}/assets/icons/credivalores-logo-footer.svg" class="" alt="">
+        {{ drupal_menu('footer') }}
+      </div>
+
+      <div class="col-12 col-lg-9 menu-footer">
+        <div class="row">
+
+          <div class="col-12 col-md-4">
+            <h2>{{ 'Información legal'|t }}</h2>
+            {{ drupal_menu('menu-informacion-legal') }}
+          </div>
+          <div class="col-12 col-md-4">
+
+            <h2>{{ 'General'|t }}</h2>
+            {{ drupal_menu('general') }}
+          </div>
+          <div class="col-12 col-md-4 social-footer">
+            <h2>{{ 'Redes sociales'|t }}</h2>
+            {{ drupal_menu('menu-redes-sociales') }}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="container copy">
+    {{ page.footer}}
+  </div>
+
+</footer>
+
+
+{% endblock %}
+
+<!-- Modal Canales -->
+
+<div class="modal fade" id="canales" tabindex="-1" aria-labelledby="canales" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="close-modal box-shadow-hover" data-dismiss="modal" aria-label="Close">
+          <img src="{{base_path ~ directory}}/assets/icons/close-modal.svg" class="" alt="">
+        </div>
+      </div>
+      <h5 class="modal-title" id="exampleModalLabel"></h5>
+      <div class="modal-body">
+      </div>
+      <div class="modalFooter">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body float-right text-align-center" style="padding: 20px 74px 80px;" >
+        <h5>Estimado cliente</h5>
+        <p>Recuerda que, para acceder a nuestro Crédito de Libranza, la empresa o fondo de pensión al que perteneces debe contar con un convenio vigente con Credivalores.</p>
+        <p><b>Si eres independiente o no cuentas con un convenio activo</b>, te invitamos a solicitar nuestra <b>tarjeta de crédito Crediuno</b>. Que te ayudará a financiar esas cosas que tanto quieres y necesitas.
+        <br>
+        <a class="btn btn-primary text-white" href="https://www.credivalores.com.co/crediuno">Solicítala aquí</a>
+        </p>
+        <p>Si ya posees alguno de nuestros productos y necesitas realizar una <b>consulta de servicio al cliente</b>, haz clic en el siguiente botón:
+        </br>
+        <a class="btn btn-primary text-white" href="https://www.credivalores.com.co/contactanos">Servicio al cliente</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

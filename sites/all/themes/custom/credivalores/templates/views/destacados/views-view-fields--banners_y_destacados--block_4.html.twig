@@ -1,0 +1,10 @@
+{% if fields.field_enlace.content|raw|striptags|trim %}
+    <a class="ancle-not-color" href="{{ fields.field_enlace.content|raw|striptags|trim}}" target="_blank">
+{% else %}
+    <a class="canalesid" data-id="{{ fields.nid.content|raw|striptags|trim}}">
+{% endif %}
+    {{ fields.field_icono.content}}
+    <div class="text-align-center">
+        {{ fields.title.content|raw|striptags|trim}}
+    </div>
+</a>

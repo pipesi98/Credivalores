@@ -1,0 +1,31 @@
+<div class="banner position-relative">
+  <div class="d-none d-sm-block banner">
+    <img class="img-banner" src="{{ fields.field_imagen.content|raw|striptags|trim}}" alt="{{ fields.field_image.content.alt }}" />
+  </div>
+  <div class="d-md-none">
+   <img class="width-100" src="{{ fields.field_imagen_mobile.content|raw|striptags|trim}}">
+  </div>
+
+      <div class="div-banner position-absolute">
+        <div class="content-banner container h-100 d-flex flex-column justify-content-center">
+        <div class="content-banner-size">
+          <div class="d-flex">
+            <h1 class="h1-icono">{{ fields.field_titulo.content|raw|striptags|trim}}</h1>
+            <!-- validar si viene ícono para maquetar segun estructura-->
+            {% if content.field_icono|render|trim is not empty %}
+              <img class="icono" src={{ file_url(content.field_icono|field_target_entity.uri.value) }} alt="{{ content.field_icono|field_raw('alt') }}" title="{{ content.field_icono|field_raw('title') }}" />
+            {% endif %}
+          </div>
+          <div class="subcontent">
+            {{ fields.field_descripcion.content}}
+          </div>
+          <div class="ctaCustom ctaCustom--blue">
+            {{ fields.field_enlace_1.content }}
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+

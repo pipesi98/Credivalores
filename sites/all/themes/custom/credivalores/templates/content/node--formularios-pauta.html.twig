@@ -1,0 +1,25 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+    
+  
+   <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-12">
+        {{content.webform}}
+       
+      </div>
+      </div>
+    </div>
+  </div>
+</article>

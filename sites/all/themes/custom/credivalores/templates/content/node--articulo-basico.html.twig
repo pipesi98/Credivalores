@@ -1,0 +1,308 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+    <div class="banner position-relative">
+    <div class="d-none d-md-block">
+      <img class="img-banner" src={{ file_url(content.field_image|field_target_entity.uri.value) }} alt="{{ content.field_image|field_raw('alt') }}" title="{{ content.field_image|field_raw('title') }}" />
+    </div>
+    <div class="d-md-none">
+      <img class="width-100" src={{ file_url(content.field_imagen_mobile|field_target_entity.uri.value) }} alt="{{ content.field_imagen_mobile|field_raw('alt') }}" title="{{ content.field_imagen_mobile|field_raw('title') }}" />
+    </div> 
+      <div class="div-banner position-absolute">
+        <div class="content-banner container h-100 d-flex flex-column justify-content-center">
+          <div class="content-banner-size">
+            <div class="d-flex">
+              <h1 class="h1-icono">{{label|field_value}}</h1>
+              <!-- validar si viene ícono para maquetar segun estructura-->
+              {% if content.field_icono|render|trim is not empty %}
+                <img class="icono" src={{ file_url(content.field_icono|field_target_entity.uri.value) }} alt="{{ content.field_icono|field_raw('alt') }}" title="{{ content.field_icono|field_raw('title') }}" />
+              {% endif %}
+            </div>
+            <div class="subcontent">
+              {{content.body|field_value}}
+            </div>
+            <div class="ctaCustom ctaCustom--blue">
+              {{content.field_enlace|field_value}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5 content-middle--65">
+      <div class="row">
+        <div class="col-md-12">
+        <!-- CONTENIDO INTERNA-->
+          {% for item in node.field_contenido %}
+          <div id="seccion-{{loop.index}}"></div>
+          {#{devel_dump (item.entity.field_titulo)}#}
+            {#{devel_dump(item.entity.getType())}#}
+            {% if item.entity.getType() == 'general' %}
+              <!-- SI EL PARAGRAPH ES GENERAL-->
+                <div class="row componente">
+                  <div class="col-12">                
+                  {% if item.entity.hastranslation('en') and node.langcode.value != 'es' %}
+                    <h2 class="title mb-18 pdd-buttom-10">{{item.entity.translation('en').field_titulo.value}}</h2>
+                    {{item.entity.translation('en').field_descripcion.value|raw}}
+                  {% else %}
+                    <h2 class="title mb-18 pdd-buttom-10">{{item.entity.field_titulo.value}}</h2>
+                    {{item.entity.field_descripcion.value|raw}}
+                  {% endif %}
+
+                    {% if item.entity.field_opcion_paragraph|length > 0 %}
+                      <!--PARAGRAPH DENTRO DE PARAGRAPH -->                     
+                        {% for item2 in item.entity.field_opcion_paragraph %}
+                          {#{devel_dump(item2.entity.getType())}#}
+  
+                          {% if item2.entity.getType() == "imagen_y_descripcion" %}
+                          <!--IMAGEN Y DESCRIPCIÓN -->
+                            <section class="imgDescriptionSect">
+                              <div class="row py-4 d-flex align-items-center mb-4 mx-2 mx-lg-0 tarjeta-2-columnas">
+                                <div class="col-12 col-md-4">
+                                  <img class="img-fluid" src="{{ file_url(item2.entity.field_imagen.entity.fileuri) }}" alt="{{ item2.entity.field_imagen.alt }}" title="{{ item2.entity.field_imagen.title }}" />
+                                </div>
+                                <div class="col-12 col-md-8">
+                                  <h3 class="mb-3 mb-md-0">{{item2.entity.field_titulo.value}}</h3>
+                                  {{item2.entity.field_descripcion.value|raw}}
+                                </div>
+                              </div>
+                            </section>
+                            <!--IMAGEN Y DESCRIPCIÓN-->
+                          {% endif %}
+
+                          {% if item2.entity.getType() == "destacado_imagen" %}
+                          <!--DESTACADO IMAGEN -->
+                            <div class="row featuredImg">
+                              <div class="col-12">
+                                <h3>{{item2.entity.field_titulo.value}}
+                                  {% if item2.entity.field_su|length > 0 %}
+                                    <span>{{item2.entity.field_su.value}}</span>
+                                  {% endif %}
+                                </h3>
+                                {{link(item2.entity.field_enlace.title, item2.entity.field_enlace.uri)}}
+                              </div>
+                              <div class="col-12">
+                                {{item2.entity.field_descripcion.value|raw}}
+                                <img class="img-fluid rounded-circle mb-18" src="{{ file_url(item2.entity.field_imagen.entity.fileuri) }}" alt="{{ item2.entity.field_imagen.alt }}" title="{{ item2.entity.field_imagen.title }}" />
+                              </div>
+                            </div>
+                            <!--DESTACADO IMAGEN-->
+                          {% endif %}
+
+                          {% if item2.entity.getType() == "destacado_multiple_enlace" %}
+                          <!--DESTACADO MULTIPLE ENLACE -->
+                            <section class="sectMultipleLink">
+                              <div class="row">
+                                <div class="col-12">
+                                  <h3>{{item2.entity.field_titulo.value}}</h3>
+                                  {{item2.entity.field_descripcion.value|raw}}
+                                  <div class="ctaCustom ctaCustom--green">
+                                    {{link(item2.entity.field_enlace.title, item2.entity.field_enlace.uri)}}
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="row">
+                                {% for i in range(0, item2.entity.field_multiple|length -1)  %}
+                                  <div class="col-12 col-md-4 d-flex flex-column justify-content-between mb-5 mb-md-0">
+                                    <p class="font-weight-bold">
+                                      {{item2.entity.field_multiple[i].value}}
+                                    </p>
+                                    {% if item2.entity.field_multiple_enlace_3[i]|length > 0 %}
+                                        <div class="ctaCustom ctaCustom--border-blue ctaCustom-p-small w-100">
+                                          {{link(item2.entity.field_multiple_enlace_3[i].title, item2.entity.field_multiple_enlace_3[i].uri)}}
+                                        </div>
+                                    {% endif %} 
+                                  </div>
+                                {% endfor %}
+                              </div>
+                              <!--DESTACADO MULTIPLE ENLACE-->
+                            </section>
+                          {% endif %}
+
+                          {% if item2.entity.getType() == "tarjetas_dos_columnas" %}
+                          <!--TARJETAS DOS COLUMNAS -->
+                            <div class="row box-shadow-hover py-4 d-flex align-items-center mb-4 mx-2 mx-lg-0 tarjeta-2-columnas">
+                              <div class="col-12 col-md-4 pl-5"><h3 class="mb-3 mb-md-0">{{item2.entity.field_titulo.value}}</h3></div>
+                              <div class="col-12 col-md-8 pl-5 pl-md-0">{{item2.entity.field_descripcion.value|raw}}</div>
+                            </div>
+                            <!--TARJETAS DOS COLUMNAS-->
+                          {% endif %}
+                          {% if item2.entity.getType() == "tarjetas" %}
+                          <!--TARJETAS -->
+                            <div class="row my-5 mx-2 mx-lg-0 box-shadow-hover p-5">
+                              <div class="col pl-3 pl-lg-5">
+                                <h3 class="font-weight-900">{{item2.entity.field_titulo.value}}</h3>
+                                {% if item2.entity.field_su|length > 0 %}
+                                  <h4 class="font-22 font-weight-200">{{item2.entity.field_su.value}}</h4>
+                                {% endif %}
+                                {{item2.entity.field_tarjetas.value|raw}}
+                              </div>
+                            </div>
+                            <!--TARJETAS-->
+                          {% endif %}
+                                                 
+                          {% if item2.entity.getType() == "tarjetas_con_imagen" %}
+                          <!--TARJETAS CON IMÁGENES -->
+                            {% if loop.first %}
+                            <div class="row my-5 mx-2 mx-sm-0">
+                            {% endif %}
+                            <div class="col-12 col-sm-6 col-lg-4 py-4 text-align-center box-shadow-hover mt-3 card_images">
+                              <img class="img-fluid rounded-circle mb-18" src="{{ file_url(item2.entity.field_imagen.entity.fileuri) }}" alt="{{ item2.entity.field_imagen.alt }}" title="{{ item2.entity.field_imagen.title }}" />
+                              <h4 class="font-weight-900">{{item2.entity.field_titulo.value}}</h4>
+                              {% if item2.entity.field_su|length > 0 %}
+                                <p>{{item2.entity.field_su.value}}</p>
+                              {% endif %}
+                              {% if loop.last %}
+                                </div>
+                              {% endif %}
+                            </div>
+                             <!--TARJETAS CON IMÁGENES-->
+                          {% endif %}
+                         
+                        {% endfor %}       
+                      <!--PARAGRAPH DENTRO DE PARAGRAPH-->
+                    {% endif %}
+                  </div>
+                </div>
+              <!-- SI EL PARAGRAPH ES GENERAL-->
+
+            {% elseif item.entity.getType() == 'imagen_dos_columnas_enlaces' %}
+              <!-- SI EL PARAGRAPH ES IMAGEN, DOS COLUMNAS Y ENLACES -->
+                <div class="row bg-blue-lt mx-2 mx-lg-0 ">
+                  <div class="col-12 col-lg-5 px-0">
+                    <img class="img-fluid w-100" src="{{ file_url(item.entity.field_imagen.entity.fileuri) }}" alt="{{ item.entity.field_imagen.alt }}" title="{{ item.entity.field_imagen.title }}" />
+                  </div>
+                  <div class="mt-lg-0 mt-3 col-12 col-lg-7 d-flex flex-column justify-content-center align-items-start align-items-lg-center">
+                    <div>
+                      <h2 class="border-bottom border-white">{{item.entity.field_titulo.value}}</h2>
+                      {{item.entity.field_descripcion.value|raw}}
+                    </div>
+                  </div>
+                </div>
+                {% if item.entity.field_enlace_multiple|length > 0 %}
+                  <div class="row mx-2 mx-lg-0 bg-gradient-blue-green text-align-center justify-content-around py-4 flex-wrap">
+                  {% for enlace in item.entity.field_enlace_multiple %}
+                  <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+                    <div class="ctaCustom ctaCustom--transparent mx-3 mx-lg-0">
+                      <!--<a class="h-100 w-100 d-flex align-items-center justify-content-center" href="{{enlace.uri}}">{{enlace.title}}</a> -->
+                      {{link(enlace.title, enlace.uri)}}
+                    </div>
+                  </div>
+                  {% endfor %}
+                  </div>
+                {% endif %}
+
+              <!-- SI EL PARAGRAPH ES IMAGEN, DOS COLUMNAS Y ENLACES -->
+            {% elseif item.entity.getType() == 'imagen_y_texto' %} 
+             <!-- SI EL PARAGRAPH ES TEXTO E IMAGEN -->
+
+              <div class="row my-5">
+                <div class="col-12">                
+                  <h2>{{item.entity.field_titulo.value}}</h2>
+                  <img class="img-fluid box-shadow" src="{{ file_url(item.entity.field_imagen.entity.fileuri) }}" alt="{{ item.entity.field_imagen.alt }}" title="{{ item.entity.field_imagen.title }}" />
+                  <div class="mt-3">
+                    {{item.entity.field_descripcion.value|raw}}
+                  </div>
+                </div>
+              </div>
+
+             <!-- SI EL PARAGRAPH ES TEXTO E IMAGEN -->
+            {% elseif item.entity.getType() == 'pdf' %} 
+             <!-- SI EL PARAGRAPH ES PDF -->
+              <section class="paragraphSectPdf">
+                <div class="row bg-gradient-blue-green py-5">
+                  <div class="col-12 col-lg-3 mx-2 mx-lg-0">     
+                    <div class="rounded-circle bg-gray-lt w-fit-content p-25">
+                      <img class=""src="/{{ base_path ~ directory }}/assets/icons/pdf.svg" alt="">
+                    </div>           
+                  </div>
+                  <div class="col-12 col-lg-9 d-flex flex-column paragraph-pdf">    
+                    <p class="color-white font-22 font-weight-900">
+
+                  {% if item.entity.hastranslation('en') and node.langcode.value != 'es' %}
+                   {{item.entity.translation('en').field_titulo.value}}
+                    {{item.entity.translation('en').field_descripcion.value|raw}}
+                  {% else %}
+                    {{item.entity.field_titulo.value}}
+                    {{item.entity.field_descripcion.value|raw}}
+                  {% endif %}
+
+
+                    </p>
+                      <div class="d-flex flex-wrap">
+                      {% for file in item.entity.field_pdf %}
+                        {% if file.description %}
+                          <div class="ctaCustom ctaCustom--transparent mt-2 mx-2"><a class="" href="{{ file_url(file.entity.fileuri) }}" target="_blank" download>{{file.description}}</a></div>
+                        {% else %}
+                          <div class="ctaCustom ctaCustom--transparent mt-2 mx-2"><a class="" href="{{ file_url(file.entity.fileuri) }}" target="_blank" download>{{loop.index}}. {{file.entity.filename.value}}</a></div>
+                        {% endif %}    
+                      {% endfor %}
+                      </div>
+                  </div>
+                </div>
+              </section>
+
+             <!-- SI EL PARAGRAPH ES PDF -->
+            {% elseif item.entity.getType() == 'dos_columnas' %} 
+             <!-- SI EL PARAGRAPH ES DOS COLUMNAS -->
+              <div class="row my-5">
+                <div class="col-12">                
+                 <h2>{{item.entity.field_titulo.value}}</h2>
+                  {% if item.entity.field_descripcion|length > 0 %}
+                      {{item.entity.field_descripcion.value|raw}}
+                  {% endif %}
+                </div>
+              </div>
+              <div class="row my-5 bg-gray-lt p-5 paragraph-2-columnas docGobierno">
+                <div class="col-12 col-lg-6 mb-3">                
+                  {{ item.entity.field_columna_1[0].value|raw }}
+                </div>
+                <div class="col-12 col-lg-6">                 
+                  {% if item.entity.field_columna_1[1]|length > 0 %}
+                      {{item.entity.field_columna_1[1].value|raw}}
+                  {% endif %}
+                </div>
+              </div>
+             <!-- SI EL PARAGRAPH ES DOS COLUMNAS -->
+
+            {% elseif item.entity.getType() == 'imagen_icono_a_dos_columnas' %}
+              <!-- SI EL PARAGRAPH ES ICONO DOS COLUMNAS -->
+                <div class="row bg-gray-lt mt-5">
+                  <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-start px-5">
+                    <div class="border-bottom border-white w-100 py-4">
+                      <img class="box-shadow-30 rounded-circle" src={{ file_url(item.entity.field_icono.entity.fileuri) }} alt="{{ item.entity.field_icono.alt }}" title="{{ item.entity.field_icono.title }}" />
+                    </div>
+                    <div class="border-bottom border-white w-100 py-4">
+                      <h2 class="font-90">{{item.entity.field_titulo.value}}</h2>
+                      <h2 class="font-35">{{item.entity.field_su.value}}</h2>
+                    </div>
+                    <div class="py-5">
+                      {{item.entity.field_descripcion.value|raw}}
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 p-0">
+                    <img class="img-fluid w-100 imgTwoColumns" src={{ file_url(item.entity.field_imagen.entity.fileuri) }} alt="{{ item.entity.field_imagen.alt }}" title="{{ item.entity.field_imagen.title }}" />
+                  </div>
+                </div>
+              <!-- SI EL PARAGRAPH ES ICONO DOS COLUMNAS -->
+            {% endif %}
+
+          {% endfor %}
+        <!-- CONTENIDO INTERNA-->
+
+      </div>
+      </div>
+    </div>
+  </div>
+</article>

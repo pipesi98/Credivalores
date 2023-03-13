@@ -1,0 +1,92 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+
+<section class="sectProduct">
+  <article{{ attributes.addClass(classes) }}>
+    <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+      <!-- BANNER-->
+      <div class="container-fluid">
+        {{ drupal_view('banners_y_destacados', 'block_5', node.id) }}
+      </div>
+      <!-- BANNER-->
+      <div class="container mb-3">
+        <div class="row">
+        <!-- CONTENIDO SUPERIOR-->
+          <div class="col-lg-12 col-md-12 col-sm-12 text_landing_info">
+            <h2>{{content.field_subtitulo_footer|field_value}}</h2>
+          {{content.body|field_value}}
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          {% for item in node.field_parrafo_superior %}
+              <div class="col-lg-4 col-md-12 col-sm-12 card_landing">
+                <img class="img-fluid" width="100" src="{{ file_url(item.entity.field_icono.entity.fileuri) }}" alt="{{ item.entity.field_icono.alt }}" title="{{ item.entity.field_icono.title }}" />
+              <h3>{{item.entity.field_titulo.value}}</h3>
+              {{item.entity.field_descripcion.value|raw}}
+              </div>
+          {% endfor %}
+        </div>
+        <!-- CONTENIDO SUPERIOR-->
+
+        </div>
+      </div>
+
+        <!-- CALLE DE SALIDA-->
+      <div class="container-fluid section_lading_slide mb-3">
+        <div class="row">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-lg-4 col-md-12 col-sm-12">
+                <img class="img-fluid" src="{{ file_url(node.field_image.0.entity.uri.value) }}" alt="{{ node.field_image.0.entity.alt }}" title="{{ node.field_image.0.entity.title }}" />
+              </div>
+              <div class="col-lg-8 col-md-12 col-sm-12">
+                {{content.field_calle_de_salida|field_value}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- CALLE DE SALIDA-->
+
+
+      <div class="container section_landing_calle mb-3">
+        <div class="row align-items-center justify-content-center">
+          <!-- CONTENIDO MEDIO-->
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <h2>{{content.field_subtitulo_medio|field_value}}</h2>
+          </div>  
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <h4>{{content.field_descripcion_media|field_value}}</h4>
+          </div>
+            {% for item in node.field_parrafo_medio %}
+                {{item.entity.field_descripcion.value|raw}} 
+            {% endfor %}
+          <!-- CONTENIDO MEDIO-->
+        </div>
+
+        <div class="row align-items-center justify-content-center">
+        <!-- CONTENIDO INFERIOR-->
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <h2>{{content.field_titulo_calle_de_salida|field_value}}</h2>
+          </div>
+          <div class="row landing_text_center justify-content-center">
+          {% for item in node.field_parrafo_inferior %}
+              {{item.entity.field_descripcion.value|raw}}    
+          {% endfor %}
+          </div>
+        <!-- CONTENIDO INFERIOR-->
+
+        </div>
+      </div>
+    </div>
+  </article>
+</section>

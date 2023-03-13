@@ -1,0 +1,50 @@
+{% include directory ~ '/templates/partials/header.html.twig' %}
+{% block content %}
+        <div id="main" class="{{ container }}">
+          <div class="row row-offcanvas row-offcanvas-left clearfix">
+              <main{{ content_attributes }}>
+                <section class="section">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <a id="main-content" tabindex="-1"></a>
+
+                     
+                      {#{ node.field_seccion.entity.translation('en').name.value }#}
+                      <!-- Miga de pan-->
+                      <ol class="breadcrumb">
+                        <li><a href="{{ url('<front>') }}">{{ 'Home'|t }}</a></li>
+                        {% if node.field_seccion.entity.name.value and node.field_seccion.entity.name.value != 'General' %}
+                          {% if node.field_seccion.entity.hastranslation('en') and node.langcode.value != 'es' %}
+                            <li>{{node.field_seccion.entity.translation('en').name.value}}</li>
+                          {% else %}
+                          <li>{{ node.field_seccion.entity.name.value }}</li>
+                          {% endif %}
+                        {% endif %}
+                        <li><a href="{{ url }}">{{ node.title.value }}</a></li>
+                      </ol>
+                      <!-- Miga de pan-->
+                    </div>
+                    {% if node.field_seccion.0.entity.label =='Inversionistas' and node.hastranslation('en') %}
+                    <div class="col-12 col-md-6">
+                      
+                        <!--idioma-->
+                          <nav class="links nav links-inline navLanguage">
+                            {{ drupal_block('language_block:language_interface', wrapper=false) }}
+                          </nav>
+                        <!--idioma-->
+                    </div>
+                    {% endif %}
+                  </div>
+                   {{ page.highlighted }}
+                   {{ page.pestana }}   
+                </section>
+              </main>
+          </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+            {{ page.content }}
+           </div>
+        </div>
+{% endblock %}
+{% include directory ~ '/templates/partials/footer.html.twig' %}

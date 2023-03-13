@@ -1,0 +1,159 @@
+.js-form-item {
+  * {
+    outline-color: transparent !important;
+    outline: none !important;
+  }
+
+  label {
+    color: $gray-middle;
+    font-size: 14px;
+    font-weight: 400;
+    &.js-form-required{
+      &::after{
+        content:"*";
+      }
+    }
+  }
+
+  input,
+  select,
+  textarea {
+    color: $blue;
+    border-color: #D1D3D4;
+    border-radius: 0px;
+    height: 45px;
+    padding: 12px 22px 14px;
+    width: 100%;
+    background-color: $white ;
+
+    &::placeholder {
+      color: #006584;
+    }
+
+    &:focus {
+      color: $blue;
+      border-color: $blue;
+      box-shadow: none;
+    }
+  }
+
+  textarea {
+    height: 180px;
+  }
+
+  input[type=checkbox] {
+      padding: 0;
+      height: 24px;
+  }
+
+  #ajax-wrapper, 
+  #ajax-wrapper--2 {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+      padding: 0 15px;
+  }
+
+  textarea {
+      border-radius: 10px;
+      height: 180px;
+  }
+
+  .custom-control-label {
+    color: $blue;
+    text-decoration: underline;
+
+    > a {
+      color: $blue;
+    }
+  }
+}
+
+.textForm {
+  border-bottom: solid #EFEFEF 1px;
+  padding-bottom: 15px;
+  margin: 30px 0 50px;
+}
+
+.formEnd {
+  text-align: center;
+}
+
+select.hidden {
+  display: none;
+}
+
+.shs-widget-container {
+  display: block;
+}
+
+select.hidden {
+  display: none;
+}
+
+.js-form-type-select {
+  position: relative;
+
+  .shs-container {
+      .shs-field-container {
+          display: flex;
+          
+          .shs-widget-container {
+              min-width: 340px;
+
+              &:first-child {
+                margin-right: 40px;
+              }
+          }
+      }
+  }
+
+  &::before {
+      content: '';
+      background: url('#{$icon-path}ico-dropdown.png') center no-repeat;
+      position: absolute;
+      top: 45px;
+      right: 28px;
+      background-size: cover !important;
+      width: 20px; height: 20px;
+  }
+}
+
+.js-form-item-departamento-y-ciudad,
+.js-form-item-ocupacion-y-empresa {
+    &::before {
+        content: none;
+    }
+
+    .shs-widget-container {
+        position: relative;
+
+        &::before {
+            content: '';
+            background: url('#{$icon-path}ico-dropdown.png') center no-repeat;
+            position: absolute;
+            top: 12px;
+            right: 4px;
+            background-size: cover !important;
+            width: 20px; height: 20px;
+        }
+    }
+}
+
+.webform-ajax-form-wrapper textarea.error {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + .75rem);
+
+}
+.webform-ajax-form-wrapper select.error {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + .75rem);
+
+}
+
+.webform-ajax-form-wrapper .invalid-feedback{
+  display: block;
+}
+
+#webform-submission-encuesta-de-satisfaccion-node-29-form-ajax .js-form-type-select::before{
+  top: 64px;
+}

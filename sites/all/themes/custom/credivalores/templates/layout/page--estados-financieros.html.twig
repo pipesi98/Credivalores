@@ -1,0 +1,104 @@
+{% include directory ~ '/templates/partials/header.html.twig' %}
+{% block content %}
+        <div id="main" class="{{ container }}">
+          <div class="row row-offcanvas row-offcanvas-left clearfix">
+              <main{{ content_attributes }}>
+                <section class="section">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <a id="main-content" tabindex="-1"></a>
+                      <!-- Miga de pan-->
+                      <ol class="breadcrumb">
+                        <li><a href="{{ url('<front>') }}">{{ 'Home'|t }}</a></li>
+                         <li>{{ 'Investors'|t }}</li>
+                        <li>{#{ page['#title']|raw|striptags|trim }#}{{ 'Financial Statements'|t }}</li>
+                      </ol>
+                      <!-- Miga de pan--> 
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <!--idioma-->
+                      <nav class="links nav links-inline navLanguage">
+                        <span hreflang="es" class="es nav-link {{ language.getId() == 'es' ? 'active' : '' }}">
+                          <a href="/{{ path('<current>') | split('/') | last }}" class="language-link {{ language.getId() == 'es' ? 'active' : '' }}" hreflang="es">Versión en español</a>
+                        </span>
+                        <span hreflang="en" class="en nav-link {{ language.getId() == 'en' ? 'active' : '' }}">
+                        <a href="/en/{{ path('<current>') | split('/') | last }}" class="language-link {{ language.getId() == 'en' ? 'active' : '' }}" hreflang="en">English version</a>
+                        </span>
+                      </nav>
+                    </div>
+                  
+                  </div>
+                  <!--idioma-->                  
+                </section>
+              </main>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <!-- BANNER-->
+            {{ drupal_view('banners_y_destacados', 'block_3',2) }}
+          <!-- BANNER-->
+        </div>
+        <div class="container">
+            <div class="row">
+              {{ page.highlighted }}
+              {{ page.pestana }} 
+              {#{page.content}#}
+
+              <div class="container mt-5">
+                <div class="row">
+                  <div class="col-md-4">
+                    <!-- MENU INTERNA-->
+                    <ul id="menu-flotante">
+                        <li class="mb-3">
+                        <a class="item-link pl-2 active" href="#seccion-ifrs">IFRS</a>
+                        </li>
+                        <li class="mb-3">
+                        <a class="item-link pl-2" href="#seccion-colgaap">COLGAAP</a>
+                        </li>
+                        <li class="mb-3">
+                        <a class="item-link pl-2" href="#gestion-anual">{{ 'Annual Management Reports'|t }}</a>
+                        </li>
+                        <li class="mb-3">
+                        <a class="item-link pl-2" href="#reporte-trimestrales">{{ 'Quarterly Financial Reports'|t }}</a>
+                        </li>
+                    </ul>
+                    <!-- MENU INTERNA-->
+                  </div>
+                  <div class="col-md-8">
+
+                        <!-- IFRS-->
+                        <div id="seccion-ifrs"></div>
+                        
+                        {{ drupal_entity('block', 'ifrs') }}
+                        <div class="itemIfrs">
+                          {{ drupal_view('estados_financieros', 'block_1') }}
+                        </div>
+                        {{ drupal_entity('block', 'ifrssobrenosotros') }}
+                        
+                        <!-- COLGAAP-->
+                        <div id="seccion-colgaap"></div>
+                        {{ drupal_entity('block', 'colgaap') }}
+                        <div class="itemIfrs">
+                          {{ drupal_view('estados_financieros', 'block_2') }}
+                        </div>
+                        <div id="gestion-anual"></div>
+                        {{ drupal_entity('block', 'informedegestionanual') }}
+                        <div class="itemIfrs">
+                          {{ drupal_view('estados_financieros', 'block_3') }}
+                        </div>
+                        <div id="reporte-trimestrales"></div>
+                        {{ drupal_entity('block', 'reportesfinancierostrimestrales') }}
+                        <div class="itemIfrs">
+                          {{ drupal_view('estados_financieros', 'block_4') }}
+                        </div>
+
+                  </div>
+                </div>
+              </div>
+          
+           </div>
+        </div>
+
+
+{% endblock %}
+{% include directory ~ '/templates/partials/footer.html.twig' %}

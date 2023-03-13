@@ -1,0 +1,35 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+    
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+  <div{{ content_attributes.addClass('node__content', 'clearfix', 'position-relative', 'banner') }}>
+    <img class="img-banner img-404" src="{{base_path ~ directory}}/assets/images/banner-404.png" alt="404">
+    <div class="container">
+      <div class="div-banner position-absolute" id="content-404">
+        <div class="content-banner container h-100 d-flex flex-column justify-content-center">
+          <div class="subcontent error">
+            <div class="d-flex">
+              <div class="d-flex align-items-center icon">
+                <img class="img-fluid" src="{{base_path ~ directory}}/assets/images/404.png" alt="">
+              </div>
+              <div class="font-130 color-blue ml-2 font-weight-100">{{label}}</div>
+            </div>
+            <div>{{content.body}}</div>
+            <div class="ctaCustom ctaCustom--green">
+              <a href="{{ url('<front>') }}">Volver al inicio</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

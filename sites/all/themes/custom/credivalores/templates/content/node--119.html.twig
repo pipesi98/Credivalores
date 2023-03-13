@@ -1,0 +1,120 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+  ]
+%}
+
+{% set counter = 0 %}
+
+<article{{ attributes.addClass(classes) }}>
+  <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+    <div class="banner position-relative">
+    <div class="d-none d-md-block">
+      <img class="img-banner" src={{ file_url(content.field_image|field_target_entity.uri.value) }} alt="{{ content.field_image|field_raw('alt') }}" title="{{ content.field_image|field_raw('title') }}" />
+    </div>
+    <div class="d-md-none">
+      <img class="w-100" src={{ file_url(content.field_imagen_mobile|field_target_entity.uri.value) }} alt="{{ content.field_imagen_mobile|field_raw('alt') }}" title="{{ content.field_imagen_mobile|field_raw('title') }}" />
+    </div>   
+      <div class="div-banner position-absolute">
+        <div class="content-banner container h-100 d-flex flex-column justify-content-center">
+          <div class="content-banner-size">
+            <h1 class="font-weight-bold">{{label|field_value}}</h1>
+            <div class="subcontent">
+              {{content.body|field_value}}
+            </div>
+            <div class="ctaCustom ctaCustom--blue">
+              {{content.field_enlace|field_value}}
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-4">
+          <!-- MENU INTERNA-->
+          <ul id="menu-flotante">
+            {% for item in node.field_contenido %}
+              <li class="mb-3">
+              <a class="item-link pl-2 {{loop.index == 1 ? 'active'}}" href="#seccion-{{loop.index}}">
+                  {% if item.entity.hastranslation('en') and node.langcode.value != 'es' %}
+                    {{item.entity.translation('en').field_titulo.value}}
+                  {% else %}
+                    {{item.entity.field_titulo.value}}
+                  {% endif %}
+              </a>
+              </li>
+            {% endfor %}
+          </ul>
+          <!-- MENU INTERNA-->
+        </div>
+        <div class="col-md-8">
+        <!-- CONTENIDO INTERNA-->
+          <div class="row">
+            <div class="col-12">
+              <div class="input-group mb-3">
+              <p class="w-100">Escribe 1 sola palabra y te arrojará los resultados encontrados.</p>
+                <input type="text" class="form-control" id="inp_search" placeholder="Buscar..." aria-label="buscador">
+                <div class="input-groupappend-">
+                  <button class="btn btn-outline-secondary" id="btn_search">Buscar</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+            Total coincidencias: <span id="totalcoincidencias">0</span>
+            </div>
+          </div>
+          {% for item in node.field_contenido %}
+          <div id="seccion-{{loop.index}}"></div>
+            {#{devel_dump(item.entity.getType())}#}
+            {% if item.entity.getType() == 'general' %}
+              <!-- SI EL PARAGRAPH ES GENERAL-->
+                <div class="row componente">
+                  <div class="col-12">          
+                    {% if item.entity.field_opcion_paragraph|length > 0 %}
+                      <!--PARAGRAPH DENTRO DE PARAGRAPH -->                     
+                        {% for item2 in item.entity.field_opcion_paragraph %}
+                          {#{devel_dump(item2.entity.getType())}#}
+                          {% if item2.entity.getType() == "tarjetas" %}
+                          <!--TARJETAS -->
+                            <div class="row my-2 mx-2 mx-lg-0 box-shadow-hover p-3 p-md-2 container_ask" id="container_ask_{{counter}}">
+                            
+                              <div class="col pl-3 pl-lg-5">
+                                  <div class="acordeon" data-target="acordeon-{{loop.index}}">
+                                    <h3 class="font-weight-900 container_ask_title" id="container_ask_text_{{counter}}">{{item2.entity.field_titulo.value}}</h3>
+                                  </div>
+
+                                  <div class="contenido" data-content="acordeon-{{loop.index}}">
+                                      {% if item2.entity.field_su|length > 0 %}
+                            
+                                        <h4 class="font-22 font-weight-200">{{item2.entity.field_su.value}}</h4>
+                                        {% endif %}
+                                        {{item2.entity.field_tarjetas.value|raw}}
+                                  </div>
+                              </div>
+                            </div>
+                            {% set counter = counter + 1 %}
+                            <!--TARJETAS-->
+                          {% endif %}
+                         
+                        {% endfor %}       
+                      <!--PARAGRAPH DENTRO DE PARAGRAPH-->
+                    {% endif %}
+                  </div>
+                </div>
+              <!-- SI EL PARAGRAPH ES GENERAL-->
+            {% endif %}
+
+          {% endfor %}
+        <!-- CONTENIDO INTERNA-->
+      </div>
+      </div>
+    </div>
+  </div>
+</article>

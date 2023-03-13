@@ -1,0 +1,14 @@
+{% block content %}
+        <div id="main" class="{{ container }}">
+          <div class="row row-offcanvas row-offcanvas-left clearfix">
+              <main{{ content_attributes }}>
+                <section class="section">
+                  <a id="main-content" tabindex="-1"></a>
+                    {{ page.highlighted }}
+                    {{ page.pestana }}
+                    {{ page.content }}
+                </section>
+              </main>
+          </div>
+        </div>
+{% endblock %}

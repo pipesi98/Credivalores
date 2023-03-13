@@ -1,0 +1,65 @@
+{% include directory ~ '/templates/partials/header.html.twig' %}
+{% block content %}
+        <div id="main" class="{{ container }}">
+          <div class="row row-offcanvas row-offcanvas-left clearfix">
+              <main{{ content_attributes }}>
+                <section class="section">
+                  <a id="main-content" tabindex="-1"></a>
+                  <!-- Miga de pan-->
+                  <ol class="breadcrumb">
+                    <li><a href="{{ url('<front>') }}">Inicio</a></li>
+                    <li><a href="{{ url }}">{{ page['#title']|raw|striptags|trim }}</a></li>
+                  </ol>
+                   <!-- Miga de pan-->  
+                </section>
+              </main>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <!-- BANNER-->
+            {{ drupal_view('banners_y_destacados', 'block_3',3) }}
+          <!-- BANNER-->
+        </div>
+        <div class="container">
+            <div class="row">
+              {{ page.highlighted }}
+              {{ page.pestana }} 
+              <div class="col-12">
+              {{ page.red_oficinas }}
+              </div>
+              <div class="container my-5">
+                <div class="row">
+                  <div class="select-custom col-12 col-md-4 d-flex flex-column justify-content-between">
+                      <label class="select-custom_label color-gray-middle">Selecciona tu producto</label>
+                      <select class="select-custom_elm" name=""  id="productos"></select>
+                  </div>
+                  <div class="select-custom col-12 col-md-4 d-flex flex-column justify-content-between">
+                      <label class="select-custom_label color-gray-middle">¿En qué departamento te encuentras?</label>
+                      <select class="select-custom_elm" name=""  id="departamentos"></select>
+                  </div>
+                  <div class="select-custom col-12 col-md-4 d-flex flex-column justify-content-between">
+                      <label class="select-custom_label color-gray-middle">Selecciona tu ciudad</label>
+                      <select class="select-custom_elm" name=""  id="ciudades"></select>
+                  </div>
+                </div>
+              </div>
+           </div>
+        </div>
+        <!-- MAPA-->
+        <div class="container-fluid sectMap">
+          <div id="map" class="map-component container"></div>
+        </div>
+        <!-- MAPA-->
+       <!-- <div class="container puntos mt-5">
+          <div class="row">
+           
+          </div>
+        </div>
+        -->
+
+
+
+
+{% endblock %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBI5OwR2YTVvnBzAKyWZaXuoDhJXKA2cE" async defer></script>
+{% include directory ~ '/templates/partials/footer.html.twig' %}

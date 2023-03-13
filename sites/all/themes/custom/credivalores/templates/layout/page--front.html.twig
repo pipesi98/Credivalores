@@ -1,0 +1,59 @@
+{% include directory ~ '/templates/partials/header.html.twig' %}
+{% block content %}
+<section class="clsMainBanner">
+<h1 class="pdd-buttom-25 d-none">{{ page['#title']|raw|striptags|trim }}</h1>
+  <!-- BANNER-->
+  {{ drupal_view('banners_y_destacados', 'block_1') }}
+  <!-- BANNER-->
+
+</section>
+
+
+<section class="section" id="main">
+  <a id="main-content" tabindex="-1"></a>
+  <section class="clsCreditos">
+    <div class="container">
+      
+      <h2 class="mb-18 pdd-buttom-10 title">Nuestros Productos</h2>
+      {{ page.highlighted }}
+      <!-- PRODUCTOS-->
+      <div class="cont-cards-credito">
+        {{ drupal_view('taxonomias', 'block_1') }}
+      </div>
+      <!-- PRODUCTOS-->
+    </div>
+  </s122ection>
+  <section class="clsDestacado">
+    <div class="container">
+    <h2 class="mb-18 pdd-buttom-10 title">Información para Inversionistas</h2>
+      <!-- DESTACADO-->
+      {{ drupal_view('taxonomias', 'block_2') }}
+      <!-- DESTACADO-->
+    </div>
+  </section>
+  <section class="clsCanales">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <!-- CANALES DE ATENCIÓN-->
+        <div class="col-lg-4 ">
+        <div class="canales-info">
+          {{page.canales_atencion_home}}
+          </div>
+        </div>
+        <div class="col-lg-8 ">
+        <div class="canales-btn">
+          {{ drupal_view('banners_y_destacados', 'block_2') }}
+          </div>
+        </div>
+        <!-- CANALES DE ATENCIÓN-->
+      </div>
+      </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+{% endblock %}
+{% include directory ~ '/templates/partials/footer.html.twig' %}

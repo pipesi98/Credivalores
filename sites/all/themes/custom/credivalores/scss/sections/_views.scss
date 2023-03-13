@@ -1,0 +1,341 @@
+.view-taxonomias{
+    .view-content{
+        margin-left: 0;
+        margin-right: 0;   
+    }
+}
+
+#views-bootstrap-tab-views-bootstrap-taxonomias-page-1{
+    .nav-tabs{
+        border-bottom: solid #EFEFEF 3px;
+        li{
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            a {
+                color: $blue;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-right: 40px;
+                position: relative;
+                transition: all .2s linear;
+
+                &:before {
+                    content: '';
+                    background-color: $blue;
+                    position: absolute;
+                    left: 0;
+                    bottom: -6px;
+                    height: 3px;
+                    width: 0%;
+                    transition: all .2s linear;
+                }
+
+                &:after{
+                    position: absolute;
+                    content: "";
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 0px 12px 0 12px;
+                    border-color: $blue transparent transparent transparent;
+                    top: 41px;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    transition: all .2s linear;
+                }
+
+                &:hover {
+                    &:after  { border-width: 12px 12px 0 12px; }
+                    &:before { width: 100%; }
+                }
+
+                &.active{
+                    position: relative;
+                    font-weight: bold;
+
+                    &:after  { border-width: 12px 12px 0 12px; }
+                    &:before { width: 100%; }
+                }
+            }
+        }
+
+        @media (max-width: 450px) {
+            align-content: center;
+            display: flex;
+            text-align: center;
+
+            li {
+                padding-right: 0;
+                display: block;
+                margin: 0 auto;
+
+                a {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+.view-display-id-page_1 {
+    margin-bottom: 80px;
+}
+
+.view-display-id-block_4{
+    .view-content{
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        .views-row{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            min-width: 25%;
+            @media (max-width: 992px) {
+                min-width: 33%;
+            }
+            @media (max-width: 521px) {
+                padding: 0;
+                min-width: 50%;
+                margin: auto;
+                margin-top: 30px;
+            }
+        }
+    }
+}
+
+.path-canales-atencion {
+    .clsChatBot {
+        margin-top: 0 !important;
+    }
+}
+
+.itemIfrs {
+    .view-content {
+        div {
+            display: inline-block;
+            margin-bottom: 46px;
+        }
+
+        h3 {
+            border-top: solid #EFEFEF 1px;
+	        padding-top: 46px;
+	        margin: 0px 0 21px;
+	        width: 100%;
+        }
+    }
+    .file {
+        background-image: none;
+        margin-right: 20px;
+        padding: 0;
+
+        a {
+            display: block;
+            border: solid $green 1px;
+            font-size: 16px;
+            color: $green;
+            text-decoration: none;
+            padding: 11px 44px;
+            transition: all .2s linear;
+
+            &:hover {
+                color: $white;
+                background-color: $green;
+            }
+            span{
+                display: block;
+                width: 100%;
+                font-size: 14px;
+            }
+        }
+    }
+}
+.itemIfrs .view-display-id-block_4 .view-grouping{
+    display: block;
+    width: 100%;
+    margin: 0;
+    .view-grouping-header{
+        display: block;
+        margin: 0;
+    }
+    .view-grouping-content{
+        margin: 0;
+        h4{
+            font-size: 20px;
+        }
+    }
+
+    .year-2021{
+
+        div{
+            display: block;
+        }
+    }
+}
+
+.itemIfrs .view-display-id-block_4 .file{
+    margin-right: 4px;
+    a{
+
+        display: block;
+        border: solid #00806F 1px;
+        font-size: 16px;
+        color: #00806F;
+        text-decoration: none;
+        width: 230px;
+        padding: 11px 21px;
+        transition: all 0.2s linear;
+    
+        &:hover {
+            color: $white;
+            background-color: $green;
+        }
+    
+    }
+}
+
+
+.link{
+    color: #006584;
+    font-weight: 500;
+    
+    &:hover{
+        text-decoration: underline;
+        color: #006584;
+    }
+}
+.rounded-circle{
+    margin-left: 25px;
+    @media (max-width: 991px){
+      margin-left: 0;
+    }
+}
+.bg-gradient-blue-green{
+    margin-bottom: 30px;
+}
+article table{
+    border-collapse: separate;
+    border-spacing: 1px 0;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 20px;
+    thead{
+        tr{
+            th{
+                background-color: #006584;
+                color: #fff;
+                text-align: center;
+                border: 0;
+                -moz-border-radius-topleft: 7px;
+                -webkit-border-top-left-radius: 7px;
+                border-top-left-radius: 7px;
+                -moz-border-radius-topright: 7px;
+                -webkit-border-top-right-radius: 7px;
+                border-top-right-radius: 7px;
+                font-size: 14px;
+            }
+        }
+    }
+    tbody{
+        tr{
+            td{
+                color: #3A3A3A !important;
+                border-top: 1px solid #fff !important;
+                background-color: #fff;
+                border-bottom: 1px solid #e7e5e5 ;
+                font-size: 14px;
+                font-weight: 300;
+                a{
+                    color: #006584;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    
+}
+
+table.first-col td:first-child{
+    background: #006584;
+    color: #fff !important;
+    font-weight: 700;
+    padding: 10px !important;
+  
+}
+
+table.first-col td:last-child {
+    background: #d6dde0;
+}
+
+
+.img-404{
+    @media (max-width: 767px)  {
+        opacity: 0;
+     }
+}
+p{
+    font-weight: 300;
+}
+li{
+    font-weight: 300;
+    a{
+        font-weight: 300;
+    }
+}
+div .text-align-center{
+    font-weight: 300;
+}
+.uitem--canales-de-atención{
+    .ultimenu__link {
+        font-weight: bold;
+    }
+}
+.uitem--preguntas-frecuentes{
+    a{
+        font-weight: 600;
+    }
+}
+.uitem--credibeneficios{
+    a{
+        font-weight: 600;
+    }
+}
+.uitem--medidas{
+    a{
+        font-weight: 600;
+    }
+}
+.uitem--zona-pagos{
+    a{
+        font-weight: 600;
+    }
+}
+.uitem--zona-virtual{
+    a{
+        font-weight: 600;
+    }
+}
+.content-middle--65 {
+    @media(max-width: 767px){
+        width: 95% !important;
+    }
+}
+.node--type-article h3{
+        font-weight: 500;
+}
+.font-weight-900{
+    font-weight: 900 !important;
+} 
+
+.path-sitemap .sitemap {
+    margin-top: 20px;
+    li.expanded{
+        margin-bottom: 10px;
+        span{
+            color: #006584;
+            font-size: 20px;
+        }
+
+    }
+}

@@ -1,0 +1,38 @@
+{% include directory ~ '/templates/partials/header.html.twig' %}
+{% block content %}
+        <div id="main" class="{{ container }}">
+          <div class="row row-offcanvas row-offcanvas-left clearfix">
+              <main{{ content_attributes }}>
+                <section class="section">
+                  <a id="main-content" tabindex="-1"></a>
+                  <!-- Miga de pan-->
+                  <ol class="breadcrumb">
+                    <li><a href="{{ url('<front>') }}">Inicio</a></li>
+                    <li>{{ page['#title']|raw|striptags|trim }}</li>
+                  </ol>
+                   <!-- Miga de pan-->  
+                </section>
+              </main>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <!-- BANNER-->
+            {{ drupal_view('banners_y_destacados', 'block_3',1) }}
+          <!-- BANNER-->
+        </div>
+        <div class="container">
+            <div class="row mx-2">
+              <div class="boxContent">
+                {{ page.highlighted }}
+                {{ page.pestana }} 
+                <h2 class="title mb-18 pdd-buttom-10">Necesitas información sobre:</h2>
+                {{ page.content }}
+              </div>
+           </div>
+        </div>
+        <div class="container-fluid">
+          {{page.canales_atencion_interna}}
+        </div>
+
+{% endblock %}
+{% include directory ~ '/templates/partials/footer.html.twig' %}

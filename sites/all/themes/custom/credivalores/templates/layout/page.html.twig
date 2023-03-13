@@ -1,0 +1,17 @@
+{% include directory ~ '/templates/partials/header.html.twig' %}
+
+{% block content %}
+        <div id="main" class="{{ container }}">
+          {{ page.breadcrumb }}
+          <div class="row row-offcanvas row-offcanvas-left clearfix">
+              <main{{ content_attributes }}>
+                <section class="section">
+                  <a id="main-content" tabindex="-1"></a>
+                   {{ page.highlighted }}
+                  {{ page.content }}
+                </section>
+              </main>
+          </div>
+        </div>
+{% endblock %}
+{% include directory ~ '/templates/partials/footer.html.twig' %}
